@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/antchfx/xmlquery"
 	"strings"
 	"github.com/PuerkitoBio/goquery"
 	"bytes"
@@ -14,6 +15,7 @@ func getDocumentPath(sourceType string, input []byte, selector string) (string, 
 	switch (strings.ToLower(sourceType)) {
 	case "json": return getJSONPath(input, selector)
 	case "html": return getHTMLPath(input, selector)
+	case "xml": return getXMLPath(input, selector)
 	default: return "", fmt.Errorf("Unknown type %s", sourceType)
 	}
 }
@@ -33,6 +35,18 @@ func getJSONPath(jsonBytes []byte, jsonPath string) (string, error) {
 	}
 	res := buf.Bytes()
 	return string(res[:]), nil
+}
+
+func getXMLPath(xmlBytes []byte, xpath string) (string, error) {
+	doc, err := xmlquery.Parse(bytes.NewReader(xmlBytes))
+	if err != nil {
+		return "", err
+	}
+	item := xmlquery.FindOne(doc, xpath)
+	if item == nil {
+		return "", err
+	}
+	return item.InnerText(), nil
 }
 
 func getHTMLPath(htmlBytes []byte, selector string) (string, error) {

@@ -58,6 +58,39 @@
             },
             "local": {
             }
+        },
+        {
+            "name": "FreeNAS",
+            "remote": {
+                "type": "html",
+                "url": "https://www.ixsystems.com/blog/knowledgebase_category/freenas-release-notes/",
+                "path": "#kbe_content > div > div > ul > li:nth-child(1) > a",
+                "regex": "^[A-Za-z]+\\s(.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
+            "name": "GitLab CE",
+            "remote": {
+                "type": "xml",
+                "url": "https://gitlab.com/gitlab-org/gitlab-ce/commits/master/CHANGELOG.md?format=atom",
+                "path": "//entry/title",
+                "regex": "^Update CHANGELOG.md for (.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
+            "name": "ESXi",
+            "remote": {
+                "type": "xml",
+                "url": "https://esxi-patches.v-front.de/atom/ESXi-6.7.0.xml",
+                "path": "//entry[2]/id",
+                "regex": "^.+#(.*?)$"
+            },
+            "local": {
+            }
         }
     ]
 }
