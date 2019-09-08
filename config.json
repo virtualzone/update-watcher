@@ -1,0 +1,63 @@
+{
+    "checks": [
+        {
+            "name": "Rancher",
+            "remote": {
+                "type": "json",
+                "url": "https://api.github.com/repos/rancher/rancher/releases/latest",
+                "path": "{.name}",
+                "regex": "^Release v(.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
+            "name": "RancherOS",
+            "remote": {
+                "type": "json",
+                "url": "https://api.github.com/repos/rancher/os/releases/latest",
+                "path": "{.name}",
+                "regex": "^v(.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
+            "name": "RaspberryMatic",
+            "remote": {
+                "type": "json",
+                "url": "https://api.github.com/repos/jens-maus/RaspberryMatic/releases/latest",
+                "path": "{.name}",
+                "regex": "^RaspberryMatic (.*?)$"
+            },
+            "local": {
+                "type": "html",
+                "url": "http://192.168.80.31/config/help.cgi",
+                "path": "#tdInfo > ul > li:nth-child(4)",
+                "regex": "^\\${dialogHelpInfoLblVersion} (.*?)$"
+            }
+        },
+        {
+            "name": "OpenHAB",
+            "remote": {
+                "type": "html",
+                "url": "https://www.openhab.org/download/",
+                "path": "#app > div > div.custom-layout > div > div.page-content > div > div > div:nth-child(3) > div.version-tabs > div:nth-child(2)",
+                "regex": "^Milestone\\W+(.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
+            "name": "Jenkins",
+            "remote": {
+                "type": "html",
+                "url": "https://jenkins.io/changelog-stable/",
+                "path": "body > div.container > div > div > div.ratings > h3:nth-child(1)",
+                "regex": "^ What's new in (.*?) \\(.*$"
+            },
+            "local": {
+            }
+        }
+    ]
+}
