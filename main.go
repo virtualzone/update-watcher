@@ -41,6 +41,9 @@ func applyRegexp(input string, expression string) (string, error) {
 		return "", fmt.Errorf("Couldn't parse regular expression: '%s'", err)
 	}
 	match := rx.FindStringSubmatch(input)
+	if (len(match) < 2) {
+		return "", fmt.Errorf("expression '%s' not found in input string", expression)
+	}
 	return match[1], nil
 }
 

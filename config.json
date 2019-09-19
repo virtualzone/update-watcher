@@ -23,6 +23,28 @@
             }
         },
         {
+            "name": "Tasmota",
+            "remote": {
+                "type": "json",
+                "url": "https://api.github.com/repos/arendst/Sonoff-Tasmota/releases/latest",
+                "path": "{.name}",
+                "regex": "^Sonoff-Tasmota v(.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
+            "name": "Pi-hole",
+            "remote": {
+                "type": "json",
+                "url": "https://api.github.com/repos/pi-hole/pi-hole/releases/latest",
+                "path": "{.name}",
+                "regex": "^Pi-hole Core v(.*?)$"
+            },
+            "local": {
+            }
+        },
+        {
             "name": "RaspberryMatic",
             "remote": {
                 "type": "json",
@@ -35,6 +57,21 @@
                 "url": "http://192.168.80.31/config/help.cgi",
                 "path": "#tdInfo > ul > li:nth-child(4)",
                 "regex": "^\\${dialogHelpInfoLblVersion} (.*?)$"
+            }
+        },
+        {
+            "name": "UniFi SDN Controller",
+            "remote": {
+                "type": "html",
+                "url": "https://www.ui.com/download/unifi/unifi-ap-ac-pro/",
+                "path": "#downloads > div.comContent.downloadResultsHolder > div.js-download-container.downloadResults > div > main > table > tbody.js-table-results.js-table-results-software > tr:nth-child(2) > td.downloadResults__name",
+                "regex": "Controller (.*?) for"
+            },
+            "local": {
+                "type": "html",
+                "url": "https://unifi:8443/manage/account/login",
+                "path": "body > div > ui-view > ui-view > div > div > div > div > div.unifiAccount__appNameAndVersion > span:nth-child(2)",
+                "regex": "^(.*?)$"
             }
         },
         {
@@ -74,7 +111,7 @@
             "name": "GitLab CE",
             "remote": {
                 "type": "xml",
-                "url": "https://gitlab.com/gitlab-org/gitlab-ce/commits/master/CHANGELOG.md?format=atom",
+                "url": "https://gitlab.com/gitlab-org/gitlab-ce/commits/master/CHANGELOG.md?format=atom&search=Update",
                 "path": "//entry/title",
                 "regex": "^Update CHANGELOG.md for (.*?)$"
             },
